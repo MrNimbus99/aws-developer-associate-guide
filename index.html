@@ -37,8 +37,14 @@ a:hover { color: #06b6d4; border-bottom-color: #06b6d4; }
 .q-options { list-style: none; padding: 0; margin-bottom: 16px; }
 .q-options li { padding: 10px 14px; margin-bottom: 6px; border-radius: 8px; background: rgba(30, 40, 65, 0.6); border: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: #9ba3b8; }
 .q-options li.correct { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
-.q-explain { background: rgba(99, 102, 241, 0.08); border-left: 3px solid #6366f1; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-top: 12px; }
-.q-explain p { font-size: 0.92rem; color: #a5b4fc; white-space: pre-line; }
+.q-explain { margin-top: 12px; }
+.q-explain-item { padding: 14px 18px; border-radius: 10px; margin-bottom: 10px; font-size: 0.92rem; line-height: 1.75; }
+.q-explain-item.correct-exp { background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; }
+.q-explain-item.correct-exp .exp-label { color: #6ee7b7; }
+.q-explain-item.wrong-exp { background: rgba(239, 68, 68, 0.06); border-left: 3px solid rgba(239, 68, 68, 0.4); }
+.q-explain-item.wrong-exp .exp-label { color: #fca5a5; }
+.exp-label { font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; display: block; }
+.exp-text { color: #b4bcd0; }
 details { cursor: pointer; }
 details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding: 8px 0; }
 .footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #6b7280; font-size: 0.9rem; }
@@ -98,11 +104,11 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Choreography with event-driven architecture allows the order service to publish an event without knowing about consumers. Each service subscribes to events independently, achieving loose coupling.
-- Why A is wrong: This is the correct answer.
-- Why B is wrong: Synchronous REST APIs create tight coupling because the order service must know about and directly call each downstream service, waiting for each response before proceeding.
-- Why C is wrong: Monolithic architecture doesn't provide the independent service notification pattern required and bundles all logic into a single deployable unit.
-- Why D is wrong: Orchestration uses a central coordinator that must know about all downstream services and manage the flow, creating tighter coupling than choreography where services react independently to events.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Choreography with event-driven architecture allows the order service to publish an event without knowing about consumers. Each service subscribes to events independently, achieving loose coupling.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">This is the correct answer.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Synchronous REST APIs create tight coupling because the order service must know about and directly call each downstream service, waiting for each response before proceeding.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Monolithic architecture doesn't provide the independent service notification pattern required and bundles all logic into a single deployable unit.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Orchestration uses a central coordinator that must know about all downstream services and manage the flow, creating tighter coupling than choreography where services react independently to events.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -116,10 +122,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: To access resources in a private VPC subnet, a Lambda function must be configured with VPC settings — specifically, it needs at least one private subnet and a security group. AWS creates Elastic Network Interfaces (ENIs) in the specified subnets, allowing the function to communicate with VPC resources like RDS. The Lambda execution role also needs the ec2:CreateNetworkInterface, ec2:DescribeNetworkInterfaces, and ec2:DeleteNetworkInterface permissions (included in the AWSLambdaVPCAccessExecutionRole managed policy).
-- Why A is wrong: Making the RDS instance publicly accessible defeats the purpose of placing it in a private subnet and introduces a security risk. Lambda should connect via VPC configuration, not over the public internet.
-- Why B is wrong: An internet gateway allows traffic to/from the internet for public subnets. It does not help Lambda reach a private subnet resource. Lambda needs VPC attachment, not internet routing.
-- Why D is wrong: Increasing the Lambda timeout may delay the error but does not resolve the root cause — the function has no network path to the RDS instance without VPC configuration.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">To access resources in a private VPC subnet, a Lambda function must be configured with VPC settings — specifically, it needs at least one private subnet and a security group. AWS creates Elastic Network Interfaces (ENIs) in the specified subnets, allowing the function to communicate with VPC resources like RDS. The Lambda execution role also needs the ec2:CreateNetworkInterface, ec2:DescribeNetworkInterfaces, and ec2:DeleteNetworkInterface permissions (included in the AWSLambdaVPCAccessExecutionRole managed policy).</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Making the RDS instance publicly accessible defeats the purpose of placing it in a private subnet and introduces a security risk. Lambda should connect via VPC configuration, not over the public internet.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">An internet gateway allows traffic to/from the internet for public subnets. It does not help Lambda reach a private subnet resource. Lambda needs VPC attachment, not internet routing.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Increasing the Lambda timeout may delay the error but does not resolve the root cause — the function has no network path to the RDS instance without VPC configuration.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -134,10 +140,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why B and E are correct: A composite key of tenantId#activityTimestamp provides high cardinality because the combination of tenant ID and timestamp creates many unique values, distributing data evenly across partitions. A UUID partition key provides the highest possible cardinality, ensuring perfectly even distribution. Both strategies avoid hot partitions by maximizing the number of distinct partition key values.
-- Why A is wrong: Using the current date creates a hot partition because all writes for a given day go to the same partition. With millions of daily writes, this causes throttling.
-- Why C is wrong: A boolean field has only two possible values (true/false), creating extremely low cardinality and severe hot partitions.
-- Why D is wrong: AWS region names provide very few distinct values (roughly 30), resulting in low cardinality and uneven data distribution.</p></div>
+<div class="q-explain"><div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B and E are correct</span><span class="exp-text">A composite key of tenantId#activityTimestamp provides high cardinality because the combination of tenant ID and timestamp creates many unique values, distributing data evenly across partitions. A UUID partition key provides the highest possible cardinality, ensuring perfectly even distribution. Both strategies avoid hot partitions by maximizing the number of distinct partition key values.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Using the current date creates a hot partition because all writes for a given day go to the same partition. With millions of daily writes, this causes throttling.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">A boolean field has only two possible values (true/false), creating extremely low cardinality and severe hot partitions.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">AWS region names provide very few distinct values (roughly 30), resulting in low cardinality and uneven data distribution.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -151,10 +157,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Lambda layers allow you to package dependencies separately (up to 250 MB unzipped total across layers) and share them across multiple functions. This reduces each function's deployment package size and enables reuse without duplicating dependencies.
-- Why A is wrong: Including all 100 MB of dependencies in every deployment package works functionally but inflates each package, slows deployments, and prevents reuse across functions. Layers solve all three issues.
-- Why B is wrong: Downloading dependencies at runtime on each invocation adds significant latency to every cold and warm start, increases execution time costs, and may fail due to network issues or rate limiting from package registries.
-- Why D is wrong: Storing dependencies in S3 and downloading them in the handler still adds download latency on each cold start and requires custom code to manage the download, extract, and path configuration. Layers handle this natively.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Lambda layers allow you to package dependencies separately (up to 250 MB unzipped total across layers) and share them across multiple functions. This reduces each function's deployment package size and enables reuse without duplicating dependencies.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Including all 100 MB of dependencies in every deployment package works functionally but inflates each package, slows deployments, and prevents reuse across functions. Layers solve all three issues.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Downloading dependencies at runtime on each invocation adds significant latency to every cold and warm start, increases execution time costs, and may fail due to network issues or rate limiting from package registries.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Storing dependencies in S3 and downloading them in the handler still adds download latency on each cold start and requires custom code to manage the download, extract, and path configuration. Layers handle this natively.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -168,10 +174,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Amazon Cognito user pools provide a fully managed user directory that supports sign-up, sign-in, email/password authentication, MFA, and issues JWT tokens (ID token, access token, refresh token) that can be used to authorize API calls. This is the purpose-built service for application-level user authentication.
-- Why B is wrong: IAM users with access keys are intended for programmatic AWS API access, not for end-user application authentication. Creating IAM users for each app user does not scale and is an anti-pattern.
-- Why C is wrong: Cognito identity pools (federated identities) provide temporary AWS credentials to access AWS services, but they do not provide user sign-up/sign-in functionality or a user directory. Identity pools are used after authentication, not for authentication itself.
-- Why D is wrong: AWS STS AssumeRole is used to obtain temporary security credentials for accessing AWS resources. It does not provide user registration, sign-in, or MFA capabilities for application users.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Amazon Cognito user pools provide a fully managed user directory that supports sign-up, sign-in, email/password authentication, MFA, and issues JWT tokens (ID token, access token, refresh token) that can be used to authorize API calls. This is the purpose-built service for application-level user authentication.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">IAM users with access keys are intended for programmatic AWS API access, not for end-user application authentication. Creating IAM users for each app user does not scale and is an anti-pattern.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Cognito identity pools (federated identities) provide temporary AWS credentials to access AWS services, but they do not provide user sign-up/sign-in functionality or a user directory. Identity pools are used after authentication, not for authentication itself.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">AWS STS AssumeRole is used to obtain temporary security credentials for accessing AWS resources. It does not provide user registration, sign-in, or MFA capabilities for application users.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -185,10 +191,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Encryption in transit protects data as it moves between the application and the S3 endpoint. Enforcing aws:SecureTransport in a bucket policy denies any request that does not use HTTPS (TLS), ensuring all data is encrypted while traveling over the network.
-- Why B is wrong: Server-side encryption (SSE-S3, SSE-KMS) protects data at rest on disk, not while it is being transmitted over the network. Even with SSE enabled, data could still be sent over an unencrypted HTTP connection without a SecureTransport policy.
-- Why C is wrong: S3 Block Public Access prevents public anonymous access to buckets and objects. It does not enforce TLS for authenticated API calls, so data could still travel unencrypted between authorized clients and S3.
-- Why D is wrong: S3 Versioning preserves previous versions of objects for recovery and audit purposes. It has no effect on how data is transmitted and does not enforce encryption in transit.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Encryption in transit protects data as it moves between the application and the S3 endpoint. Enforcing aws:SecureTransport in a bucket policy denies any request that does not use HTTPS (TLS), ensuring all data is encrypted while traveling over the network.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Server-side encryption (SSE-S3, SSE-KMS) protects data at rest on disk, not while it is being transmitted over the network. Even with SSE enabled, data could still be sent over an unencrypted HTTP connection without a SecureTransport policy.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">S3 Block Public Access prevents public anonymous access to buckets and objects. It does not enforce TLS for authenticated API calls, so data could still travel unencrypted between authorized clients and S3.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">S3 Versioning preserves previous versions of objects for recovery and audit purposes. It has no effect on how data is transmitted and does not enforce encryption in transit.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -202,10 +208,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: AWS Secrets Manager is purpose-built for managing sensitive credentials. It supports automatic rotation of database credentials using built-in Lambda rotation functions, encrypts secrets at rest using AWS KMS, and provides fine-grained IAM access control. The Lambda function retrieves the current credentials at runtime, so rotated credentials are picked up automatically without redeployment.
-- Why A is wrong: Hardcoding credentials in source code is a critical security anti-pattern. Credentials in code can be exposed through version control, logs, or decompiled artifacts, and rotating them requires a code change and redeployment.
-- Why B is wrong: While Lambda environment variables can store values, plaintext environment variables are visible to anyone with console access to the function configuration. They also do not support automatic rotation — you would need to manually update the variable each time credentials change.
-- Why D is wrong: Storing credentials in an S3 object (even with restricted access) does not provide automatic rotation, versioning of secrets, or built-in integration with RDS credential rotation. It also lacks the audit trail and lifecycle management that Secrets Manager provides.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">AWS Secrets Manager is purpose-built for managing sensitive credentials. It supports automatic rotation of database credentials using built-in Lambda rotation functions, encrypts secrets at rest using AWS KMS, and provides fine-grained IAM access control. The Lambda function retrieves the current credentials at runtime, so rotated credentials are picked up automatically without redeployment.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Hardcoding credentials in source code is a critical security anti-pattern. Credentials in code can be exposed through version control, logs, or decompiled artifacts, and rotating them requires a code change and redeployment.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">While Lambda environment variables can store values, plaintext environment variables are visible to anyone with console access to the function configuration. They also do not support automatic rotation — you would need to manually update the variable each time credentials change.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Storing credentials in an S3 object (even with restricted access) does not provide automatic rotation, versioning of secrets, or built-in integration with RDS credential rotation. It also lacks the audit trail and lifecycle management that Secrets Manager provides.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -219,10 +225,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Amazon Cognito user pools natively integrate with social identity providers (Google, Facebook) for authentication, and Cognito identity pools exchange the resulting tokens for temporary, scoped AWS credentials via STS. This is fully managed with no custom infrastructure to maintain.
-- Why A is wrong: Creating individual IAM users for each mobile app user does not scale, violates AWS best practices for external users, and distributing long-term access keys to mobile devices is a security risk.
-- Why C is wrong: Building a custom authentication service on EC2 adds significant operational overhead (patching, scaling, availability) and issuing long-term IAM access keys is insecure compared to temporary credentials.
-- Why D is wrong: Embedding a shared IAM access key in application code is a critical security vulnerability — the key can be extracted from the app binary, and a single compromised key exposes all resources with no per-user access control.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Amazon Cognito user pools natively integrate with social identity providers (Google, Facebook) for authentication, and Cognito identity pools exchange the resulting tokens for temporary, scoped AWS credentials via STS. This is fully managed with no custom infrastructure to maintain.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Creating individual IAM users for each mobile app user does not scale, violates AWS best practices for external users, and distributing long-term access keys to mobile devices is a security risk.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Building a custom authentication service on EC2 adds significant operational overhead (patching, scaling, availability) and issuing long-term IAM access keys is insecure compared to temporary credentials.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Embedding a shared IAM access key in application code is a critical security vulnerability — the key can be extracted from the app binary, and a single compromised key exposes all resources with no per-user access control.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -236,10 +242,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct (B): Lambda layers allow you to package shared libraries, custom runtimes, or common code separately from your function code. When you publish a new layer version, you update the layer version ARN referenced by each function — a lightweight configuration change — rather than rebuilding and redeploying every function's code package. The shared code is maintained in a single artifact, and each function simply points to the appropriate layer version.
-- Why A is wrong: Copying shared code into each function's deployment package creates duplication. Every update to the shared code requires repackaging and redeploying all functions, which is exactly the problem described.
-- Why C is wrong: Downloading code from S3 at runtime adds latency to every cold start, increases complexity with custom bootstrap logic, and is not how Lambda is designed to manage dependencies.
-- Why D is wrong: Environment variables are for configuration values (strings up to 4 KB total), not for storing executable code. They cannot hold utility libraries or modules.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct (B)</span><span class="exp-text">Lambda layers allow you to package shared libraries, custom runtimes, or common code separately from your function code. When you publish a new layer version, you update the layer version ARN referenced by each function — a lightweight configuration change — rather than rebuilding and redeploying every function's code package. The shared code is maintained in a single artifact, and each function simply points to the appropriate layer version.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Copying shared code into each function's deployment package creates duplication. Every update to the shared code requires repackaging and redeploying all functions, which is exactly the problem described.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Downloading code from S3 at runtime adds latency to every cold start, increases complexity with custom bootstrap logic, and is not how Lambda is designed to manage dependencies.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Environment variables are for configuration values (strings up to 4 KB total), not for storing executable code. They cannot hold utility libraries or modules.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -253,10 +259,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: The 'sam local invoke' command executes a Lambda function locally inside a Docker container using a test event JSON file. This allows developers to test function logic, environment variables, and event handling without deploying to AWS, reducing iteration time and cost.
-- Why B is wrong: Testing directly in production with live traffic is risky and not a best practice for development testing. Developers should validate in local or staging environments first.
-- Why C is wrong: 'sam deploy --guided' deploys the stack to AWS — it does not provide local testing. It is a deployment command, not a testing tool.
-- Why D is wrong: Manually zipping and uploading code bypasses the SAM workflow and does not provide the reproducible local testing environment that sam local invoke offers.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">The 'sam local invoke' command executes a Lambda function locally inside a Docker container using a test event JSON file. This allows developers to test function logic, environment variables, and event handling without deploying to AWS, reducing iteration time and cost.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Testing directly in production with live traffic is risky and not a best practice for development testing. Developers should validate in local or staging environments first.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">'sam deploy --guided' deploys the stack to AWS — it does not provide local testing. It is a deployment command, not a testing tool.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Manually zipping and uploading code bypasses the SAM workflow and does not provide the reproducible local testing environment that sam local invoke offers.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -270,10 +276,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: `sam local generate-event s3 put` produces a correctly structured S3 event JSON that matches what Lambda receives from S3 in production. The developer can pipe it directly into `sam local invoke` or save it to a file. This avoids manual errors in event structure.
-- Why A is wrong: Manually writing a JSON file is error-prone — S3 events have a complex nested structure with fields like `Records[].s3.bucket.name` and `Records[].s3.object.key` that are easy to misconfigure.
-- Why C is wrong: Deploying to AWS first defeats the purpose of local testing and slows down the development cycle.
-- Why D is wrong: Copying from a DynamoDB Streams event would have a completely different structure (`Records[].dynamodb`) incompatible with the S3 event schema the function expects.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">`sam local generate-event s3 put` produces a correctly structured S3 event JSON that matches what Lambda receives from S3 in production. The developer can pipe it directly into `sam local invoke` or save it to a file. This avoids manual errors in event structure.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Manually writing a JSON file is error-prone — S3 events have a complex nested structure with fields like `Records[].s3.bucket.name` and `Records[].s3.object.key` that are easy to misconfigure.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Deploying to AWS first defeats the purpose of local testing and slows down the development cycle.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Copying from a DynamoDB Streams event would have a completely different structure (`Records[].dynamodb`) incompatible with the S3 event schema the function expects.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -287,10 +293,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct (B): Lambda supports two packaging types: Zip (limited to 50 MB zipped / 250 MB unzipped) and container image (up to 10 GB). When a deployment package exceeds the Zip size limits, switching to a container image is the recommended approach. SAM supports container image deployments via the PackageType: Image property and Metadata for the Docker build.
-- Why A is wrong: Arbitrarily splitting a function into smaller functions changes the application architecture and may not be feasible if the code has interdependencies. This doesn't address the root packaging constraint.
-- Why C is wrong: Uploading via the Console bypasses the SAM-based CI/CD pipeline the team is already using, losing infrastructure-as-code benefits and repeatability.
-- Why D is wrong: The unzipped limit is 250 MB and the zipped limit is 50 MB. Higher compression may reduce the zipped size but does not change the unzipped size, which is already over the 250 MB limit.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct (B)</span><span class="exp-text">Lambda supports two packaging types: Zip (limited to 50 MB zipped / 250 MB unzipped) and container image (up to 10 GB). When a deployment package exceeds the Zip size limits, switching to a container image is the recommended approach. SAM supports container image deployments via the PackageType: Image property and Metadata for the Docker build.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Arbitrarily splitting a function into smaller functions changes the application architecture and may not be feasible if the code has interdependencies. This doesn't address the root packaging constraint.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Uploading via the Console bypasses the SAM-based CI/CD pipeline the team is already using, losing infrastructure-as-code benefits and repeatability.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">The unzipped limit is 250 MB and the zipped limit is 50 MB. Higher compression may reduce the zipped size but does not change the unzipped size, which is already over the 250 MB limit.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -304,10 +310,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Lambda deployment packages must include all required dependencies. For shared libraries used across multiple functions, Lambda layers allow packaging them once and attaching to multiple functions, reducing duplication and package size.
-- Why B is wrong: Lambda does not support installing packages at runtime via bootstrap scripts. The execution environment is read-only (except /tmp), and there is no package manager available during cold start.
-- Why C is wrong: Downloading dependencies from S3 on every invocation adds significant latency and increases costs. Dependencies should be bundled at deployment time, not fetched at runtime.
-- Why D is wrong: Lambda runtimes only include standard libraries (e.g., AWS SDK for Python/Node.js). Third-party libraries must be explicitly packaged by the developer.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Lambda deployment packages must include all required dependencies. For shared libraries used across multiple functions, Lambda layers allow packaging them once and attaching to multiple functions, reducing duplication and package size.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Lambda does not support installing packages at runtime via bootstrap scripts. The execution environment is read-only (except /tmp), and there is no package manager available during cold start.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Downloading dependencies from S3 on every invocation adds significant latency and increases costs. Dependencies should be bundled at deployment time, not fetched at runtime.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Lambda runtimes only include standard libraries (e.g., AWS SDK for Python/Node.js). Third-party libraries must be explicitly packaged by the developer.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -321,10 +327,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: AWS X-Ray tracing instruments the Lambda function and its downstream calls (DynamoDB, other services), producing a service map and trace timeline that pinpoints exactly which segment is causing the latency spike. This is the correct first step in root cause analysis because you need to identify the bottleneck before applying a fix.
-- Why A is wrong: Increasing Lambda memory also increases proportional CPU, which can help CPU-bound functions, but the question states duration 'occasionally' spikes — this suggests an external dependency issue, not a consistent compute bottleneck. Blindly increasing memory without diagnosing the root cause is not the right first step.
-- Why B is wrong: The question states provisioned capacity is not being exceeded, so switching to on-demand would not resolve the issue. On-demand mode helps with unpredictable traffic patterns causing throttling, which is ruled out here.
-- Why D is wrong: Since provisioned capacity is not being exceeded (no throttling), increasing RCUs would have no effect. The spikes are likely caused by something other than DynamoDB throttling, such as cold starts, network latency, or connection initialization.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">AWS X-Ray tracing instruments the Lambda function and its downstream calls (DynamoDB, other services), producing a service map and trace timeline that pinpoints exactly which segment is causing the latency spike. This is the correct first step in root cause analysis because you need to identify the bottleneck before applying a fix.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Increasing Lambda memory also increases proportional CPU, which can help CPU-bound functions, but the question states duration 'occasionally' spikes — this suggests an external dependency issue, not a consistent compute bottleneck. Blindly increasing memory without diagnosing the root cause is not the right first step.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">The question states provisioned capacity is not being exceeded, so switching to on-demand would not resolve the issue. On-demand mode helps with unpredictable traffic patterns causing throttling, which is ruled out here.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Since provisioned capacity is not being exceeded (no throttling), increasing RCUs would have no effect. The spikes are likely caused by something other than DynamoDB throttling, such as cold starts, network latency, or connection initialization.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -338,10 +344,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Observability combines logs, metrics, and traces to let teams investigate unknown failure modes by querying system outputs—without needing to predict every failure in advance. Monitoring checks known conditions (e.g., CPU &gt; 80%), but observability enables exploring novel, unanticipated issues through correlated telemetry data.
-- Why A is wrong: Monitoring does use dashboards, but observability is not just 'more dashboards.' Observability is about the ability to ask arbitrary questions of your system data, not simply having more visual displays.
-- Why B is wrong: Both monitoring and observability use CloudWatch metrics. The distinction is not about the tool used but about the depth of insight—observability adds traces and structured logs for root-cause analysis of unknown issues.
-- Why D is wrong: Observability does not replace monitoring. Monitoring (alerting on known thresholds) remains essential. Observability extends monitoring by enabling investigation of problems that were not anticipated when alerts were configured.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Observability combines logs, metrics, and traces to let teams investigate unknown failure modes by querying system outputs—without needing to predict every failure in advance. Monitoring checks known conditions (e.g., CPU &gt; 80%), but observability enables exploring novel, unanticipated issues through correlated telemetry data.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Monitoring does use dashboards, but observability is not just 'more dashboards.' Observability is about the ability to ask arbitrary questions of your system data, not simply having more visual displays.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Both monitoring and observability use CloudWatch metrics. The distinction is not about the tool used but about the depth of insight—observability adds traces and structured logs for root-cause analysis of unknown issues.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Observability does not replace monitoring. Monitoring (alerting on known thresholds) remains essential. Observability extends monitoring by enabling investigation of problems that were not anticipated when alerts were configured.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -355,10 +361,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Provisioned concurrency keeps a specified number of Lambda execution environments initialized and ready to respond immediately, eliminating cold starts. This is the correct approach when an API has strict latency SLAs that cold starts would violate.
-- Why A is wrong: Reserved concurrency sets a maximum limit on concurrent executions to prevent a function from consuming too much capacity, but it does NOT pre-initialize environments. Invocations still experience cold starts.
-- Why C is wrong: Increasing memory allocation gives the function more CPU and can speed up execution time, but it does not eliminate the initialization delay (cold start) that occurs when new execution environments are created.
-- Why D is wrong: Reducing the deployment package size can slightly reduce cold start duration (less code to load), but it does not eliminate cold starts. Provisioned concurrency is the direct solution for latency-sensitive workloads.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Provisioned concurrency keeps a specified number of Lambda execution environments initialized and ready to respond immediately, eliminating cold starts. This is the correct approach when an API has strict latency SLAs that cold starts would violate.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Reserved concurrency sets a maximum limit on concurrent executions to prevent a function from consuming too much capacity, but it does NOT pre-initialize environments. Invocations still experience cold starts.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Increasing memory allocation gives the function more CPU and can speed up execution time, but it does not eliminate the initialization delay (cold start) that occurs when new execution environments are created.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Reducing the deployment package size can slightly reduce cold start duration (less code to load), but it does not eliminate cold starts. Provisioned concurrency is the direct solution for latency-sensitive workloads.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -372,10 +378,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: CloudWatch Logs contain the actual execution details, including any DynamoDB throttling, slow queries, or SDK retry behavior that would explain the gradual duration increase. Since DynamoDB is the external dependency and the duration has increased gradually, examining logs for DynamoDB read latency or throttling events is the most direct root cause investigation step.
-- Why A is wrong: Increasing the Lambda timeout would mask the symptom (slow execution) without identifying why duration increased. This treats the symptom, not the cause.
-- Why C is wrong: While X-Ray traces are useful for latency analysis, the question asks what to check FIRST. CloudWatch Logs are always available by default and provide immediate insight into errors and retries without needing to enable additional instrumentation.
-- Why D is wrong: Increasing SQS visibility timeout prevents duplicate processing but does not help identify why the Lambda function is running slower. It addresses a side effect, not the root cause.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">CloudWatch Logs contain the actual execution details, including any DynamoDB throttling, slow queries, or SDK retry behavior that would explain the gradual duration increase. Since DynamoDB is the external dependency and the duration has increased gradually, examining logs for DynamoDB read latency or throttling events is the most direct root cause investigation step.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Increasing the Lambda timeout would mask the symptom (slow execution) without identifying why duration increased. This treats the symptom, not the cause.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">While X-Ray traces are useful for latency analysis, the question asks what to check FIRST. CloudWatch Logs are always available by default and provide immediate insight into errors and retries without needing to enable additional instrumentation.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Increasing SQS visibility timeout prevents duplicate processing but does not help identify why the Lambda function is running slower. It addresses a side effect, not the root cause.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -389,10 +395,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Lambda aliases (e.g., dev, staging, prod) each point to a specific published version. This gives every environment an immutable code snapshot, allows independent promotion (move the alias pointer), and integrates natively with API Gateway stage variables and weighted traffic shifting — all without duplicating function definitions.
-- Why B is wrong: Environment variables on $LATEST change behavior but $LATEST is mutable — any code update immediately affects all environments, violating the immutability requirement.
-- Why C is wrong: Deploying the same version everywhere means all environments run identical code. API Gateway can route differently, but the Lambda code itself cannot be versioned per environment.
-- Why D is wrong: Separate functions per environment duplicates IAM roles, triggers, and configuration, creating operational overhead. Aliases achieve the same isolation within a single function.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Lambda aliases (e.g., dev, staging, prod) each point to a specific published version. This gives every environment an immutable code snapshot, allows independent promotion (move the alias pointer), and integrates natively with API Gateway stage variables and weighted traffic shifting — all without duplicating function definitions.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Environment variables on $LATEST change behavior but $LATEST is mutable — any code update immediately affects all environments, violating the immutability requirement.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Deploying the same version everywhere means all environments run identical code. API Gateway can route differently, but the Lambda code itself cannot be versioned per environment.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Separate functions per environment duplicates IAM roles, triggers, and configuration, creating operational overhead. Aliases achieve the same isolation within a single function.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -406,10 +412,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Target tracking scaling is the simplest and most effective approach for gradual, predictable traffic patterns. It automatically adjusts capacity to maintain the target metric (e.g., 50% CPU), scaling out as traffic rises and scaling in as it drops — without needing to define individual alarms or thresholds. This matches the gradual traffic pattern and keeps latency low.
-- Why A is wrong: Simple scaling reacts to a single alarm threshold and has a cooldown period during which no further scaling occurs. This can cause latency spikes because scaling lags behind gradual load increases.
-- Why C is wrong: Scheduled scaling uses fixed times, which doesn't account for actual demand variations. If traffic patterns shift (e.g., a holiday), the schedule won't adapt, leading to either over-provisioning (higher cost) or under-provisioning (latency spikes).
-- Why D is wrong: Step scaling is useful for unpredictable, spiky traffic patterns where you need different scaling responses at different thresholds. For gradual, predictable increases, target tracking is simpler and more cost-efficient because AWS manages the scaling math automatically.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Target tracking scaling is the simplest and most effective approach for gradual, predictable traffic patterns. It automatically adjusts capacity to maintain the target metric (e.g., 50% CPU), scaling out as traffic rises and scaling in as it drops — without needing to define individual alarms or thresholds. This matches the gradual traffic pattern and keeps latency low.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Simple scaling reacts to a single alarm threshold and has a cooldown period during which no further scaling occurs. This can cause latency spikes because scaling lags behind gradual load increases.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Scheduled scaling uses fixed times, which doesn't account for actual demand variations. If traffic patterns shift (e.g., a holiday), the schedule won't adapt, leading to either over-provisioning (higher cost) or under-provisioning (latency spikes).</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Step scaling is useful for unpredictable, spiky traffic patterns where you need different scaling responses at different thresholds. For gradual, predictable increases, target tracking is simpler and more cost-efficient because AWS manages the scaling math automatically.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -424,12 +430,12 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: A composite primary key (partition key + sort key) allows multiple items to share the same partition key while being differentiated by the sort key. This enables efficient queries that retrieve all related items (e.g., all orders for a customer) using a single Query operation on the partition key. A high-cardinality partition key (such as CustomerId) distributes data evenly across partitions, preventing hot partitions and throttling.
-- Why A is wrong: Using a sequential numeric ID (e.g., auto-incrementing) as the partition key creates hot partitions because DynamoDB assigns partitions based on key hash values. Sequential IDs cause writes to concentrate on a single partition, leading to throttling under high throughput.
-- Why B is wrong: A composite key with CustomerId as partition key and OrderDate as sort key is correct — it allows querying all orders for a customer sorted by date using a single Query operation.
-- Why C is wrong: A single attribute primary key (partition key only) with a low-cardinality attribute like OrderStatus would create hot partitions because most items would cluster under a few values (e.g., &quot;Pending&quot;, &quot;Shipped&quot;). This is a poor key design.
-- Why D is wrong: High-cardinality partition keys are correct — they ensure even data distribution across DynamoDB partitions, which is a fundamental best practice for key design.
-- Why E is wrong: Scan with a filter expression reads the entire table and then discards non-matching items. This is expensive in terms of read capacity and latency compared to a Query on a well-designed composite key.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">A composite primary key (partition key + sort key) allows multiple items to share the same partition key while being differentiated by the sort key. This enables efficient queries that retrieve all related items (e.g., all orders for a customer) using a single Query operation on the partition key. A high-cardinality partition key (such as CustomerId) distributes data evenly across partitions, preventing hot partitions and throttling.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Using a sequential numeric ID (e.g., auto-incrementing) as the partition key creates hot partitions because DynamoDB assigns partitions based on key hash values. Sequential IDs cause writes to concentrate on a single partition, leading to throttling under high throughput.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">A composite key with CustomerId as partition key and OrderDate as sort key is correct — it allows querying all orders for a customer sorted by date using a single Query operation.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">A single attribute primary key (partition key only) with a low-cardinality attribute like OrderStatus would create hot partitions because most items would cluster under a few values (e.g., &quot;Pending&quot;, &quot;Shipped&quot;). This is a poor key design.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">High-cardinality partition keys are correct — they ensure even data distribution across DynamoDB partitions, which is a fundamental best practice for key design.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why E is wrong</span><span class="exp-text">Scan with a filter expression reads the entire table and then discards non-matching items. This is expensive in terms of read capacity and latency compared to a Query on a well-designed composite key.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -443,10 +449,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct (B): When the visibility timeout is shorter than the time it takes a consumer to process a message, the message becomes visible again and is delivered to another consumer before the first one finishes. Increasing the visibility timeout beyond the average processing time prevents duplicate processing.
-- Why A is wrong: Message retention period controls how long unprocessed messages stay in the queue (default 4 days, max 14 days). It does not affect whether messages are redelivered to other consumers during processing.
-- Why C is wrong: Long polling reduces empty responses and API costs by waiting up to 20 seconds for messages to arrive before returning. It does not affect message visibility or duplicate delivery.
-- Why D is wrong: FIFO queues guarantee ordering and exactly-once processing, but switching queue types does not address the root cause—if the visibility timeout is too short, messages will still be retried. Additionally, FIFO queues have a throughput limit of 300 messages/second (3,000 with batching) which may not suit all workloads.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct (B)</span><span class="exp-text">When the visibility timeout is shorter than the time it takes a consumer to process a message, the message becomes visible again and is delivered to another consumer before the first one finishes. Increasing the visibility timeout beyond the average processing time prevents duplicate processing.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Message retention period controls how long unprocessed messages stay in the queue (default 4 days, max 14 days). It does not affect whether messages are redelivered to other consumers during processing.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Long polling reduces empty responses and API costs by waiting up to 20 seconds for messages to arrive before returning. It does not affect message visibility or duplicate delivery.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">FIFO queues guarantee ordering and exactly-once processing, but switching queue types does not address the root cause—if the visibility timeout is too short, messages will still be retried. Additionally, FIFO queues have a throughput limit of 300 messages/second (3,000 with batching) which may not suit all workloads.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -460,10 +466,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: CodePipeline stages execute sequentially. The correct order is: Source (pulls code from CodeCommit), Build (compiles/tests with CodeBuild), Manual Approval (pauses pipeline for human review), then Deploy (deploys with CodeDeploy). Manual Approval is a dedicated action type configured in its own stage or within a stage before the deploy action.
-- Why B is wrong: Deploying before building would deploy uncompiled/untested code, and approval after deployment defeats its purpose.
-- Why C is wrong: The Build stage cannot run before the Source stage provides the source artifact.
-- Why D is wrong: CodePipeline does not have an 'inline approval checkbox' on deploy actions. Manual Approval is a separate action type that must be explicitly configured.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">CodePipeline stages execute sequentially. The correct order is: Source (pulls code from CodeCommit), Build (compiles/tests with CodeBuild), Manual Approval (pauses pipeline for human review), then Deploy (deploys with CodeDeploy). Manual Approval is a dedicated action type configured in its own stage or within a stage before the deploy action.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Deploying before building would deploy uncompiled/untested code, and approval after deployment defeats its purpose.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">The Build stage cannot run before the Source stage provides the source artifact.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">CodePipeline does not have an 'inline approval checkbox' on deploy actions. Manual Approval is a separate action type that must be explicitly configured.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -477,10 +483,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: In AWS IAM policy evaluation logic, an explicit deny in any applicable policy (identity-based, resource-based, SCPs, permission boundaries) always takes precedence over any allow. Since the bucket policy explicitly denies s3:GetObject, the request is denied regardless of the identity-based allow on the execution role.
-- Why A is wrong: An identity-based allow cannot override an explicit deny in a resource-based policy. The deny always wins in AWS policy evaluation.
-- Why C is wrong: For same-account access to S3, AWS evaluates both the identity-based policy and the bucket policy. If either contains an explicit deny, the request is denied. Resource-based policies are always evaluated for S3, even within the same account.
-- Why D is wrong: S3 returns a 403 Access Denied error (not 404) when access is denied due to policy evaluation. S3 may return 404 only if the requester lacks s3:ListBucket permission and the object does not exist.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">In AWS IAM policy evaluation logic, an explicit deny in any applicable policy (identity-based, resource-based, SCPs, permission boundaries) always takes precedence over any allow. Since the bucket policy explicitly denies s3:GetObject, the request is denied regardless of the identity-based allow on the execution role.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">An identity-based allow cannot override an explicit deny in a resource-based policy. The deny always wins in AWS policy evaluation.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">For same-account access to S3, AWS evaluates both the identity-based policy and the bucket policy. If either contains an explicit deny, the request is denied. Resource-based policies are always evaluated for S3, even within the same account.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">S3 returns a 403 Access Denied error (not 404) when access is denied due to policy evaluation. S3 may return 404 only if the requester lacks s3:ListBucket permission and the object does not exist.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -494,10 +500,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Origin Access Control (OAC) is the AWS-recommended method to restrict S3 origin access so users can only reach content through CloudFront. OAC authenticates requests from CloudFront to S3 using SigV4, and the S3 bucket policy is updated to allow access only from the specific CloudFront distribution, blocking direct S3 URL access. OAC supersedes the legacy Origin Access Identity (OAI) and supports SSE-KMS, all S3 features, and all AWS Regions.
-- Why B is wrong: Making the S3 bucket public defeats the purpose of restricting direct access. Signed URLs control who can access content through CloudFront but do nothing to prevent direct S3 bucket URL access if the bucket is public.
-- Why C is wrong: VPC endpoints connect resources within a VPC to AWS services over the AWS private network. CloudFront is a global edge service that operates outside of VPCs, so a VPC endpoint cannot restrict S3 access to CloudFront.
-- Why D is wrong: S3 Transfer Acceleration speeds up uploads to S3 by routing data through CloudFront edge locations. It does not restrict read access to the bucket or integrate with CloudFront distributions for content delivery access control.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Origin Access Control (OAC) is the AWS-recommended method to restrict S3 origin access so users can only reach content through CloudFront. OAC authenticates requests from CloudFront to S3 using SigV4, and the S3 bucket policy is updated to allow access only from the specific CloudFront distribution, blocking direct S3 URL access. OAC supersedes the legacy Origin Access Identity (OAI) and supports SSE-KMS, all S3 features, and all AWS Regions.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Making the S3 bucket public defeats the purpose of restricting direct access. Signed URLs control who can access content through CloudFront but do nothing to prevent direct S3 bucket URL access if the bucket is public.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">VPC endpoints connect resources within a VPC to AWS services over the AWS private network. CloudFront is a global edge service that operates outside of VPCs, so a VPC endpoint cannot restrict S3 access to CloudFront.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">S3 Transfer Acceleration speeds up uploads to S3 by routing data through CloudFront edge locations. It does not restrict read access to the bucket or integrate with CloudFront distributions for content delivery access control.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -511,10 +517,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: CloudFormation dynamic references (using the {{resolve:ssm:parameter-name:version}} syntax) allow templates to retrieve values from Systems Manager Parameter Store at stack creation or update time. The developer stores environment-specific values (database strings, API URLs) in Parameter Store with a naming convention like /app/prod/db-connection and /app/dev/db-connection, then references them dynamically in the template. This keeps the template environment-agnostic, centralizes configuration in Parameter Store, and supports SecureString for sensitive values using {{resolve:ssm-secure:...}}.
-- Why A is wrong: Maintaining separate templates per environment creates template drift risk and multiplies maintenance effort. Any structural change must be replicated across all template copies. A single parameterized template with dynamic references is the standard best practice.
-- Why B is wrong: CloudFormation Mappings with FindInMap works for a small, fixed set of values known at template authoring time (like AMI IDs per region). However, Mappings are static — values are hardcoded in the template and require a template update to change. Parameter Store dynamic references allow values to be changed independently of the template, making operational updates (like rotating a database connection string) possible without redeploying the stack.
-- Why D is wrong: Cross-stack references (Export/Import) share outputs between CloudFormation stacks in the same account and region. They are designed for sharing resource identifiers (like VPC IDs or subnet IDs) between infrastructure stacks, not for managing environment-specific application configuration. Cross-stack references also create tight coupling — an exported value cannot be modified while any stack imports it.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">CloudFormation dynamic references (using the {{resolve:ssm:parameter-name:version}} syntax) allow templates to retrieve values from Systems Manager Parameter Store at stack creation or update time. The developer stores environment-specific values (database strings, API URLs) in Parameter Store with a naming convention like /app/prod/db-connection and /app/dev/db-connection, then references them dynamically in the template. This keeps the template environment-agnostic, centralizes configuration in Parameter Store, and supports SecureString for sensitive values using {{resolve:ssm-secure:...}}.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Maintaining separate templates per environment creates template drift risk and multiplies maintenance effort. Any structural change must be replicated across all template copies. A single parameterized template with dynamic references is the standard best practice.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">CloudFormation Mappings with FindInMap works for a small, fixed set of values known at template authoring time (like AMI IDs per region). However, Mappings are static — values are hardcoded in the template and require a template update to change. Parameter Store dynamic references allow values to be changed independently of the template, making operational updates (like rotating a database connection string) possible without redeploying the stack.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Cross-stack references (Export/Import) share outputs between CloudFormation stacks in the same account and region. They are designed for sharing resource identifiers (like VPC IDs or subnet IDs) between infrastructure stacks, not for managing environment-specific application configuration. Cross-stack references also create tight coupling — an exported value cannot be modified while any stack imports it.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -528,10 +534,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Kinesis uses the MD5 hash of the partition key to determine shard placement. Records with the same partition key are routed to the same shard, and Kinesis guarantees ordering within a shard. Using the session ID as the partition key ensures all events for a given session are processed in order.
-- Why A is wrong: Random UUIDs distribute records evenly across shards (good for throughput), but events from the same session would land on different shards, breaking per-session ordering.
-- Why C is wrong: A single fixed partition key sends all records to one shard, creating a hot shard bottleneck and limiting write throughput to 1 MB/sec or 1,000 records/sec regardless of the number of shards.
-- Why D is wrong: The partition key is a required parameter when calling PutRecord or PutRecords. Kinesis does not support automatic shard assignment without a partition key.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Kinesis uses the MD5 hash of the partition key to determine shard placement. Records with the same partition key are routed to the same shard, and Kinesis guarantees ordering within a shard. Using the session ID as the partition key ensures all events for a given session are processed in order.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Random UUIDs distribute records evenly across shards (good for throughput), but events from the same session would land on different shards, breaking per-session ordering.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">A single fixed partition key sends all records to one shard, creating a hot shard bottleneck and limiting write throughput to 1 MB/sec or 1,000 records/sec regardless of the number of shards.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">The partition key is a required parameter when calling PutRecord or PutRecords. Kinesis does not support automatic shard assignment without a partition key.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -546,10 +552,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Provisioned concurrency (B) pre-initializes a specified number of execution environments so they are ready to respond immediately, eliminating cold starts for those environments. Moving initialization code outside the handler (D) ensures expensive operations like database connections and SDK client creation happen during the INIT phase and are reused across invocations, reducing both cold and warm start latency.
-- Why A is wrong: Lambda minimum memory is 128 MB, not 64 MB. Reducing memory actually increases cold start duration because Lambda allocates CPU proportional to memory — less memory means less CPU and slower initialization.
-- Why C is wrong: Increasing the timeout does not reduce cold start latency. Timeout controls the maximum execution duration, not initialization speed. The function still takes the same time to cold start regardless of timeout setting.
-- Why E is wrong: Switching to Java would likely increase cold start times. Java (JVM-based) runtimes generally have longer cold starts than interpreted runtimes like Python due to JVM startup overhead.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Provisioned concurrency (B) pre-initializes a specified number of execution environments so they are ready to respond immediately, eliminating cold starts for those environments. Moving initialization code outside the handler (D) ensures expensive operations like database connections and SDK client creation happen during the INIT phase and are reused across invocations, reducing both cold and warm start latency.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">Lambda minimum memory is 128 MB, not 64 MB. Reducing memory actually increases cold start duration because Lambda allocates CPU proportional to memory — less memory means less CPU and slower initialization.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Increasing the timeout does not reduce cold start latency. Timeout controls the maximum execution duration, not initialization speed. The function still takes the same time to cold start regardless of timeout setting.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why E is wrong</span><span class="exp-text">Switching to Java would likely increase cold start times. Java (JVM-based) runtimes generally have longer cold starts than interpreted runtimes like Python due to JVM startup overhead.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -563,10 +569,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: Edge-optimized API Gateway APIs are fronted by a CloudFront distribution managed by API Gateway. CloudFront requires that SSL/TLS certificates be provisioned in us-east-1 (N. Virginia), regardless of the Region where the API is deployed. Therefore, the ACM certificate must be created in us-east-1.
-- Why B is wrong: Placing the certificate in eu-west-1 would work for a Regional custom domain name, but not for an edge-optimized one. Edge-optimized endpoints use CloudFront, which only reads certificates from us-east-1.
-- Why C is wrong: ACM certificates are Regional resources, not global. A certificate created in ap-southeast-1 is not visible to CloudFront, which only uses us-east-1.
-- Why D is wrong: While you can import third-party certificates into ACM, there is no requirement to do so. ACM issues free public certificates. The key constraint is the Region (us-east-1), not the certificate source.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">Edge-optimized API Gateway APIs are fronted by a CloudFront distribution managed by API Gateway. CloudFront requires that SSL/TLS certificates be provisioned in us-east-1 (N. Virginia), regardless of the Region where the API is deployed. Therefore, the ACM certificate must be created in us-east-1.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Placing the certificate in eu-west-1 would work for a Regional custom domain name, but not for an edge-optimized one. Edge-optimized endpoints use CloudFront, which only reads certificates from us-east-1.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">ACM certificates are Regional resources, not global. A certificate created in ap-southeast-1 is not visible to CloudFront, which only uses us-east-1.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">While you can import third-party certificates into ACM, there is no requirement to do so. ACM issues free public certificates. The key constraint is the Region (us-east-1), not the certificate source.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -580,10 +586,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: CodePipeline natively supports a manual approval action type that pauses the pipeline and optionally sends an SNS notification. The release manager can approve or reject the deployment directly in the CodePipeline console or via the API. This is the standard, built-in mechanism for gating deployments.
-- Why A is wrong: CloudWatch alarms monitor metrics and trigger automated actions—they cannot pause a pipeline and wait for a human decision.
-- Why C is wrong: Using a Lambda function to poll an email inbox is an overly complex, fragile, and non-standard approach. CodePipeline already provides a manual approval action for this exact use case.
-- Why D is wrong: EventBridge can trigger pipelines on a schedule, but restricting deployments to business hours does not replace a human review gate; the release manager must still explicitly approve each deployment.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">CodePipeline natively supports a manual approval action type that pauses the pipeline and optionally sends an SNS notification. The release manager can approve or reject the deployment directly in the CodePipeline console or via the API. This is the standard, built-in mechanism for gating deployments.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">CloudWatch alarms monitor metrics and trigger automated actions—they cannot pause a pipeline and wait for a human decision.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why C is wrong</span><span class="exp-text">Using a Lambda function to poll an email inbox is an overly complex, fragile, and non-standard approach. CodePipeline already provides a manual approval action for this exact use case.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">EventBridge can trigger pipelines on a schedule, but restricting deployments to business hours does not replace a human review gate; the release manager must still explicitly approve each deployment.</span></div></div>
 </details>
 </div>
 <div class="q-card">
@@ -597,10 +603,10 @@ details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding:
 </ul>
 <details>
 <summary>Show Explanation</summary>
-<div class="q-explain"><p>- Why correct: For stream-based event sources (Kinesis, DynamoDB Streams), failure handling is configured on the event source mapping, not the Lambda function itself. Configuring an on-failure destination (such as an SQS queue or SNS topic) on the event source mapping captures the metadata of failed record batches after retries are exhausted, allowing the iterator to advance past the problematic records.
-- Why A is wrong: A DLQ configured directly on the Lambda function only works for asynchronous invocations (e.g., SNS, S3 events). Kinesis triggers use synchronous (poll-based) invocation, so the DLQ must be configured on the event source mapping, not the function.
-- Why B is wrong: Enhanced fan-out provides dedicated read throughput per consumer using HTTP/2 push, but it does not handle or isolate processing failures within a consumer.
-- Why D is wrong: Setting the parallelization factor to 1 means one Lambda instance processes the entire shard sequentially, but it does not capture failed records or prevent shard blocking. The BisectBatchOnFunctionError setting could help narrow down failures, but the question asks about capturing failed records.</p></div>
+<div class="q-explain"><div class="q-explain-item correct-exp"><span class="exp-label">✓ Why correct</span><span class="exp-text">For stream-based event sources (Kinesis, DynamoDB Streams), failure handling is configured on the event source mapping, not the Lambda function itself. Configuring an on-failure destination (such as an SQS queue or SNS topic) on the event source mapping captures the metadata of failed record batches after retries are exhausted, allowing the iterator to advance past the problematic records.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why A is wrong</span><span class="exp-text">A DLQ configured directly on the Lambda function only works for asynchronous invocations (e.g., SNS, S3 events). Kinesis triggers use synchronous (poll-based) invocation, so the DLQ must be configured on the event source mapping, not the function.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why B is wrong</span><span class="exp-text">Enhanced fan-out provides dedicated read throughput per consumer using HTTP/2 push, but it does not handle or isolate processing failures within a consumer.</span></div>
+<div class="q-explain-item wrong-exp"><span class="exp-label">✗ Why D is wrong</span><span class="exp-text">Setting the parallelization factor to 1 means one Lambda instance processes the entire shard sequentially, but it does not capture failed records or prevent shard blocking. The BisectBatchOnFunctionError setting could help narrow down failures, but the question asks about capturing failed records.</span></div></div>
 </details>
 </div>
 
