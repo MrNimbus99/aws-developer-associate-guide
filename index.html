@@ -3,80 +3,618 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Developer Associate (DVA-C02) complete study guide. Master AWS application development with SDKs, Lambda, DynamoDB, and CI/CD pipelines. Pass with NestedCerts.">
-<title>AWS Developer Associate Guide | DVA-C02 Exam Prep 2026</title>
-<link rel="preconnect" href="https://nestedcerts.com">
+<meta name="description" content="AWS Certified Developer – Associate (DVA-C02) study guide with 30 free sample practice questions and detailed explanations. Prepare for your AWS exam with NestedCerts.">
+<title>AWS Developer Associate Study Guide | DVA-C02 Free Practice Questions 2026</title>
+<link rel="canonical" href="https://mrnimbus99.github.io/aws-developer-associate-guide/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%); color: #e8edf9; line-height: 1.7; }
 .container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
-.hero { text-align: center; margin-bottom: 80px; animation: fadeInUp 0.8s ease; }
+.hero { text-align: center; margin-bottom: 60px; animation: fadeInUp 0.8s ease; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .badge { display: inline-block; padding: 8px 16px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 100px; font-size: 0.85rem; font-weight: 600; color: #60a5fa; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.05em; }
-h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(135deg, #60a5fa, #06b6d4, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.02em; }
-.lead { font-size: 1.25rem; color: #9ba3b8; max-width: 700px; margin: 0 auto 32px; line-height: 1.8; }
-.cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; margin: 16px 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); border: none; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(135deg, #60a5fa, #06b6d4, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.lead { font-size: 1.15rem; color: #9ba3b8; max-width: 700px; margin: 0 auto 32px; line-height: 1.8; }
+.cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; margin: 12px 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); border: none; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5); }
-.section { background: rgba(21, 27, 43, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 48px; margin-bottom: 40px; backdrop-filter: blur(10px); transition: all 0.3s ease; }
-.section:hover { border-color: rgba(59, 130, 246, 0.3); transform: translateY(-2px); }
-h2 { font-size: 2rem; margin-bottom: 24px; color: #60a5fa; font-weight: 700; }
-p { color: #9ba3b8; margin-bottom: 16px; line-height: 1.8; font-size: 1.05rem; }
-a { color: #60a5fa; text-decoration: none; border-bottom: 1px solid rgba(96, 165, 250, 0.3); transition: all 0.2s ease; }
+.cta-secondary { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: none; color: #60a5fa; }
+.section { background: rgba(21, 27, 43, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 40px; margin-bottom: 32px; backdrop-filter: blur(10px); }
+h2 { font-size: 1.8rem; margin-bottom: 20px; color: #60a5fa; font-weight: 700; }
+h3 { font-size: 1.2rem; margin-bottom: 12px; color: #c4ccdf; font-weight: 600; }
+p, li { color: #9ba3b8; line-height: 1.8; font-size: 1.02rem; }
+a { color: #60a5fa; text-decoration: none; border-bottom: 1px solid rgba(96, 165, 250, 0.3); }
 a:hover { color: #06b6d4; border-bottom-color: #06b6d4; }
-ul { margin: 24px 0; padding-left: 0; list-style: none; }
-li { margin-bottom: 16px; padding-left: 32px; position: relative; color: #9ba3b8; line-height: 1.7; }
-li::before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 700; font-size: 1.2rem; }
-.footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: #6b7280; font-size: 0.95rem; }
+.domains { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+.domain-tag { padding: 12px 16px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 10px; font-size: 0.95rem; color: #a5b4fc; }
+.tips-list { list-style: none; padding: 0; }
+.tips-list li { margin-bottom: 14px; padding-left: 28px; position: relative; }
+.tips-list li::before { content: "💡"; position: absolute; left: 0; }
+.q-card { background: rgba(15, 20, 35, 0.8); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+.q-num { font-size: 0.8rem; color: #6366f1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.q-domain { font-size: 0.78rem; color: #8b5cf6; margin-bottom: 12px; }
+.q-text { color: #d1d5e8; font-size: 1.05rem; margin-bottom: 16px; font-weight: 500; line-height: 1.7; }
+.q-options { list-style: none; padding: 0; margin-bottom: 16px; }
+.q-options li { padding: 10px 14px; margin-bottom: 6px; border-radius: 8px; background: rgba(30, 40, 65, 0.6); border: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: #9ba3b8; }
+.q-options li.correct { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+.q-explain { background: rgba(99, 102, 241, 0.08); border-left: 3px solid #6366f1; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-top: 12px; }
+.q-explain p { font-size: 0.92rem; color: #a5b4fc; white-space: pre-line; }
+details { cursor: pointer; }
+details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding: 8px 0; }
+.footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #6b7280; font-size: 0.9rem; }
 .footer a { margin: 0 12px; }
-@media (max-width: 768px) { .container { padding: 40px 20px; } h1 { font-size: 2.5rem; } .section { padding: 32px 24px; } }</style>
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+.stat { text-align: center; padding: 20px; background: rgba(59, 130, 246, 0.08); border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.15); }
+.stat-num { font-size: 1.8rem; font-weight: 800; color: #60a5fa; }
+.stat-label { font-size: 0.85rem; color: #6b7280; margin-top: 4px; }
+@media (max-width: 768px) { .container { padding: 32px 16px; } .section { padding: 24px 18px; } .q-card { padding: 20px 16px; } }</style>
 </head>
 <body>
 <div class="container">
+
 <div class="hero">
-<div class="badge">For Developers</div>
-<h1>AWS Developer Associate (DVA-C02)</h1>
-<p class="lead">Master AWS application development with SDKs, Lambda, DynamoDB, and CI/CD pipelines.</p>
+<div class="badge">Associate Level</div>
+<h1>AWS Certified Developer – Associate (DVA-C02)</h1>
+<p class="lead">Develop, deploy, and debug cloud-based applications using AWS SDKs, APIs, and CI/CD tools.</p>
 <a href="https://nestedcerts.com/articles/developer-associate" class="cta">Start DVA-C02 Prep →</a>
+<a href="https://nestedcerts.com/certifications" class="cta cta-secondary">All 13 Certifications</a>
 </div>
 
 <div class="section">
-<h2>Why This Certification?</h2>
-<p>The <a href="https://nestedcerts.com/articles/developer-associate">AWS Developer Associate</a> certification validates your expertise and opens doors to higher-paying roles. It demonstrates to employers that you have production-ready AWS skills.</p>
+<h2>Exam Domains</h2>
+<p>The DVA-C02 exam tests your knowledge across these domains. Each sample question below is tagged with its domain so you can see exactly what's covered.</p>
+<div class="domains"><div class="domain-tag">Development with AWS Services</div><div class="domain-tag">Security</div><div class="domain-tag">Deployment</div><div class="domain-tag">Troubleshooting and Optimization</div></div>
 </div>
 
 <div class="section">
-<h2>Proven Study Strategy</h2>
-<p>Success requires hands-on practice and exam-realistic questions. <a href="https://nestedcerts.com">NestedCerts provides comprehensive practice tests</a> that match the actual DVA-C02 exam format and difficulty.</p>
-<p>Follow our <a href="https://nestedcerts.com/articles/30-day-path">structured 30-day study plan</a> for daily guidance and consistent progress.</p>
+<h2>Platform Stats</h2>
+<div class="stats">
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Practice Quizzes</div></div>
+<div class="stat"><div class="stat-num">2</div><div class="stat-label">Full Exams</div></div>
+<div class="stat"><div class="stat-num">730+</div><div class="stat-label">Total Questions</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Day Study Plan</div></div>
+</div>
 </div>
 
 <div class="section">
-<h2>What You Get with NestedCerts</h2>
-<ul>
-<li>Practice questions matching DVA-C02 exam format</li>
-<li>Detailed explanations for every answer</li>
-<li>Performance analytics showing weak areas</li>
-<li>30-day structured study plan</li>
-<li>Full-length practice exams</li>
-<li>Mobile-friendly platform</li>
+<h2>Study Tips from Our Question Writers</h2>
+<p>These tips are based on patterns we see across our DVA-C02 question bank — the topics that trip people up most often:</p>
+<ul class="tips-list"><li>Know DynamoDB inside out — partition keys, sort keys, GSIs, LSIs, and capacity modes</li><li>Understand Lambda cold starts, concurrency limits, and environment variables</li><li>Study API Gateway integration types — Lambda proxy vs custom integration</li><li>Master CodePipeline, CodeBuild, CodeDeploy deployment strategies (blue/green, canary, rolling)</li><li>Learn X-Ray for distributed tracing — segments, subsegments, annotations, and metadata</li></ul>
+</div>
+
+<div class="section">
+<h2>30 Free Sample Questions</h2>
+<p>Below are 30 real practice questions from <a href="https://nestedcerts.com">NestedCerts</a> — one from each of our 30 quizzes for DVA-C02. Each includes the full explanation showing why every answer is correct or incorrect. This is exactly the quality and depth you get across all 730+ questions on the platform.</p>
+</div>
+
+<div class="q-card">
+<div class="q-num">Quiz 1 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team is designing a new e-commerce application. They want to ensure that when an order is placed, multiple downstream services (inventory, shipping, payment) are notified independently without the order service knowing about each consumer. Which architectural pattern best fits this requirement?</div>
+<ul class="q-options"><li class="correct">✓ Choreography with event-driven architecture</li>
+<li>Microservices with synchronous REST APIs</li>
+<li>Monolithic architecture with shared database</li>
+<li>Orchestration with a central coordinator</li>
 </ul>
-<a href="https://nestedcerts.com" class="cta">Start Free Practice →</a>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Choreography with event-driven architecture allows the order service to publish an event without knowing about consumers. Each service subscribes to events independently, achieving loose coupling.
+- Why A is wrong: This is the correct answer.
+- Why B is wrong: Synchronous REST APIs create tight coupling because the order service must know about and directly call each downstream service, waiting for each response before proceeding.
+- Why C is wrong: Monolithic architecture doesn't provide the independent service notification pattern required and bundles all logic into a single deployable unit.
+- Why D is wrong: Orchestration uses a central coordinator that must know about all downstream services and manage the flow, creating tighter coupling than choreography where services react independently to events.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 2 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is writing a Lambda function that must query an Amazon RDS PostgreSQL database in a private subnet. The function currently times out when attempting to connect. What should the developer do to allow the Lambda function to access the database?</div>
+<ul class="q-options"><li>Make the RDS instance publicly accessible and connect over the internet</li>
+<li>Attach an internet gateway to the VPC and route Lambda traffic through it</li>
+<li class="correct">✓ Configure the Lambda function with the VPC private subnets and a security group that allows access to the RDS instance</li>
+<li>Increase the Lambda function timeout to 15 minutes</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: To access resources in a private VPC subnet, a Lambda function must be configured with VPC settings — specifically, it needs at least one private subnet and a security group. AWS creates Elastic Network Interfaces (ENIs) in the specified subnets, allowing the function to communicate with VPC resources like RDS. The Lambda execution role also needs the ec2:CreateNetworkInterface, ec2:DescribeNetworkInterfaces, and ec2:DeleteNetworkInterface permissions (included in the AWSLambdaVPCAccessExecutionRole managed policy).
+- Why A is wrong: Making the RDS instance publicly accessible defeats the purpose of placing it in a private subnet and introduces a security risk. Lambda should connect via VPC configuration, not over the public internet.
+- Why B is wrong: An internet gateway allows traffic to/from the internet for public subnets. It does not help Lambda reach a private subnet resource. Lambda needs VPC attachment, not internet routing.
+- Why D is wrong: Increasing the Lambda timeout may delay the error but does not resolve the root cause — the function has no network path to the RDS instance without VPC configuration.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 3 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is designing a DynamoDB table for a multi-tenant SaaS application that stores user activity logs. The table will handle millions of writes per day across thousands of tenants. Which TWO partition key strategies provide the BEST balanced partition access?</div>
+<ul class="q-options"><li>Use the current date as the partition key</li>
+<li class="correct">✓ Use a composite key of tenantId#activityTimestamp as the partition key</li>
+<li>Use a boolean &quot;isActive&quot; field as the partition key</li>
+<li>Use the AWS region name as the partition key</li>
+<li class="correct">✓ Use a randomly generated UUID as the partition key</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why B and E are correct: A composite key of tenantId#activityTimestamp provides high cardinality because the combination of tenant ID and timestamp creates many unique values, distributing data evenly across partitions. A UUID partition key provides the highest possible cardinality, ensuring perfectly even distribution. Both strategies avoid hot partitions by maximizing the number of distinct partition key values.
+- Why A is wrong: Using the current date creates a hot partition because all writes for a given day go to the same partition. With millions of daily writes, this causes throttling.
+- Why C is wrong: A boolean field has only two possible values (true/false), creating extremely low cardinality and severe hot partitions.
+- Why D is wrong: AWS region names provide very few distinct values (roughly 30), resulting in low cardinality and uneven data distribution.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 4 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team has five Lambda functions that all depend on the same 100 MB third-party image-processing library. Deployment packages are growing large, and updating the library version requires redeploying all five functions. What is the BEST way to manage these shared dependencies?</div>
+<ul class="q-options"><li>Store dependencies in S3 and download them in the function handler at runtime</li>
+<li>Include dependencies in each function's deployment package</li>
+<li class="correct">✓ Use Lambda layers for shared dependencies</li>
+<li>Download dependencies at runtime on each invocation from the package registry</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Lambda layers allow you to package dependencies separately (up to 250 MB unzipped total across layers) and share them across multiple functions. This reduces each function's deployment package size and enables reuse without duplicating dependencies.
+- Why A is wrong: Including all 100 MB of dependencies in every deployment package works functionally but inflates each package, slows deployments, and prevents reuse across functions. Layers solve all three issues.
+- Why B is wrong: Downloading dependencies at runtime on each invocation adds significant latency to every cold and warm start, increases execution time costs, and may fail due to network issues or rate limiting from package registries.
+- Why D is wrong: Storing dependencies in S3 and downloading them in the handler still adds download latency on each cold start and requires custom code to manage the download, extract, and path configuration. Layers handle this natively.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 5 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company is building a mobile application that requires users to sign up and sign in before accessing protected resources. The application needs to support email/password registration, multi-factor authentication (MFA), and must issue tokens for API authorization. Which AWS service should the developer use to implement this authentication flow?</div>
+<ul class="q-options"><li class="correct">✓ Amazon Cognito user pools</li>
+<li>AWS IAM users with access keys</li>
+<li>Amazon Cognito identity pools alone</li>
+<li>AWS STS AssumeRole</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Amazon Cognito user pools provide a fully managed user directory that supports sign-up, sign-in, email/password authentication, MFA, and issues JWT tokens (ID token, access token, refresh token) that can be used to authorize API calls. This is the purpose-built service for application-level user authentication.
+- Why B is wrong: IAM users with access keys are intended for programmatic AWS API access, not for end-user application authentication. Creating IAM users for each app user does not scale and is an anti-pattern.
+- Why C is wrong: Cognito identity pools (federated identities) provide temporary AWS credentials to access AWS services, but they do not provide user sign-up/sign-in functionality or a user directory. Identity pools are used after authentication, not for authentication itself.
+- Why D is wrong: AWS STS AssumeRole is used to obtain temporary security credentials for accessing AWS resources. It does not provide user registration, sign-in, or MFA capabilities for application users.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 6 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer stores sensitive customer data in Amazon S3. A security audit requires that all data transmitted between the application and S3 must be encrypted. Which action ensures encryption in transit for all S3 requests?</div>
+<ul class="q-options"><li class="correct">✓ Enforce aws:SecureTransport condition in the S3 bucket policy</li>
+<li>Enable server-side encryption with SSE-S3</li>
+<li>Enable S3 Block Public Access</li>
+<li>Enable S3 Versioning on the bucket</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Encryption in transit protects data as it moves between the application and the S3 endpoint. Enforcing aws:SecureTransport in a bucket policy denies any request that does not use HTTPS (TLS), ensuring all data is encrypted while traveling over the network.
+- Why B is wrong: Server-side encryption (SSE-S3, SSE-KMS) protects data at rest on disk, not while it is being transmitted over the network. Even with SSE enabled, data could still be sent over an unencrypted HTTP connection without a SecureTransport policy.
+- Why C is wrong: S3 Block Public Access prevents public anonymous access to buckets and objects. It does not enforce TLS for authenticated API calls, so data could still travel unencrypted between authorized clients and S3.
+- Why D is wrong: S3 Versioning preserves previous versions of objects for recovery and audit purposes. It has no effect on how data is transmitted and does not enforce encryption in transit.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 7 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is building an AWS Lambda function that connects to an Amazon RDS database. The database credentials must be stored securely and rotated every 30 days without requiring application redeployment. Which approach should the developer use?</div>
+<ul class="q-options"><li>Hardcode the credentials in the application source code</li>
+<li>Store the credentials in a plaintext Lambda environment variable</li>
+<li class="correct">✓ Store the credentials in AWS Secrets Manager and enable automatic rotation</li>
+<li>Store the credentials in an Amazon S3 object with restricted bucket policies</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS Secrets Manager is purpose-built for managing sensitive credentials. It supports automatic rotation of database credentials using built-in Lambda rotation functions, encrypts secrets at rest using AWS KMS, and provides fine-grained IAM access control. The Lambda function retrieves the current credentials at runtime, so rotated credentials are picked up automatically without redeployment.
+- Why A is wrong: Hardcoding credentials in source code is a critical security anti-pattern. Credentials in code can be exposed through version control, logs, or decompiled artifacts, and rotating them requires a code change and redeployment.
+- Why B is wrong: While Lambda environment variables can store values, plaintext environment variables are visible to anyone with console access to the function configuration. They also do not support automatic rotation — you would need to manually update the variable each time credentials change.
+- Why D is wrong: Storing credentials in an S3 object (even with restricted access) does not provide automatic rotation, versioning of secrets, or built-in integration with RDS credential rotation. It also lacks the audit trail and lifecycle management that Secrets Manager provides.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 8 — Sample Question</div>
+<div class="q-domain">Security</div>
+<div class="q-text">A company is building a mobile application that allows users to sign in with their Google or Facebook accounts. After authentication, the application must access DynamoDB tables to store user preferences. Which solution provides federated access with the LEAST operational overhead?</div>
+<ul class="q-options"><li>Create individual IAM users for each social login user and distribute long-term access keys</li>
+<li class="correct">✓ Use Amazon Cognito user pools for social sign-in and identity pools to exchange tokens for temporary AWS credentials</li>
+<li>Build a custom authentication service on EC2 that validates social tokens and issues long-term IAM access keys</li>
+<li>Embed a shared IAM access key in the mobile application code for all users to access DynamoDB</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Amazon Cognito user pools natively integrate with social identity providers (Google, Facebook) for authentication, and Cognito identity pools exchange the resulting tokens for temporary, scoped AWS credentials via STS. This is fully managed with no custom infrastructure to maintain.
+- Why A is wrong: Creating individual IAM users for each mobile app user does not scale, violates AWS best practices for external users, and distributing long-term access keys to mobile devices is a security risk.
+- Why C is wrong: Building a custom authentication service on EC2 adds significant operational overhead (patching, scaling, availability) and issuing long-term IAM access keys is insecure compared to temporary credentials.
+- Why D is wrong: Embedding a shared IAM access key in application code is a critical security vulnerability — the key can be extracted from the app binary, and a single compromised key exposes all resources with no per-user access control.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 9 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team maintains several Lambda functions that share common utility code for logging, error handling, and database connection logic. Every time the shared code is updated, the team must redeploy all functions individually. Which approach BEST reduces deployment overhead while keeping the shared dependencies manageable?</div>
+<ul class="q-options"><li>Copy the shared utility code into each Lambda function's deployment package</li>
+<li class="correct">✓ Package the shared code as a Lambda layer and reference it from each function</li>
+<li>Store the shared code in an S3 bucket and download it at runtime using a custom bootstrap script</li>
+<li>Embed the shared code as environment variables in each Lambda function</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): Lambda layers allow you to package shared libraries, custom runtimes, or common code separately from your function code. When you publish a new layer version, you update the layer version ARN referenced by each function — a lightweight configuration change — rather than rebuilding and redeploying every function's code package. The shared code is maintained in a single artifact, and each function simply points to the appropriate layer version.
+- Why A is wrong: Copying shared code into each function's deployment package creates duplication. Every update to the shared code requires repackaging and redeploying all functions, which is exactly the problem described.
+- Why C is wrong: Downloading code from S3 at runtime adds latency to every cold start, increases complexity with custom bootstrap logic, and is not how Lambda is designed to manage dependencies.
+- Why D is wrong: Environment variables are for configuration values (strings up to 4 KB total), not for storing executable code. They cannot hold utility libraries or modules.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 10 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is building an AWS SAM application with a Lambda function that processes S3 event notifications. The developer wants to quickly validate the function logic before deploying to AWS. What is the MOST efficient approach?</div>
+<ul class="q-options"><li class="correct">✓ Use sam local invoke with a test event JSON file to execute the function locally</li>
+<li>Deploy the function to production and test with live traffic</li>
+<li>Use sam deploy --guided to test the function interactively in the cloud</li>
+<li>Manually zip the code and upload it to the Lambda console for testing</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: The 'sam local invoke' command executes a Lambda function locally inside a Docker container using a test event JSON file. This allows developers to test function logic, environment variables, and event handling without deploying to AWS, reducing iteration time and cost.
+- Why B is wrong: Testing directly in production with live traffic is risky and not a best practice for development testing. Developers should validate in local or staging environments first.
+- Why C is wrong: 'sam deploy --guided' deploys the stack to AWS — it does not provide local testing. It is a deployment command, not a testing tool.
+- Why D is wrong: Manually zipping and uploading code bypasses the SAM workflow and does not provide the reproducible local testing environment that sam local invoke offers.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 11 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is building an AWS Lambda function that processes Amazon S3 put events. Before deploying to AWS, the developer wants to test the function locally with a realistic event payload. The developer has AWS SAM CLI installed. Which approach creates the MOST accurate test event for local invocation?</div>
+<ul class="q-options"><li>Manually write a JSON event file based on the developer's memory of the S3 event structure</li>
+<li>Deploy the function to AWS first, then use the Lambda console test feature</li>
+<li class="correct">✓ Run `sam local generate-event s3 put` to create a properly structured S3 event payload, then invoke the function with `sam local invoke -e event.json`</li>
+<li>Copy the event structure from a DynamoDB Streams event and modify the field names</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: `sam local generate-event s3 put` produces a correctly structured S3 event JSON that matches what Lambda receives from S3 in production. The developer can pipe it directly into `sam local invoke` or save it to a file. This avoids manual errors in event structure.
+- Why A is wrong: Manually writing a JSON file is error-prone — S3 events have a complex nested structure with fields like `Records[].s3.bucket.name` and `Records[].s3.object.key` that are easy to misconfigure.
+- Why C is wrong: Deploying to AWS first defeats the purpose of local testing and slows down the development cycle.
+- Why D is wrong: Copying from a DynamoDB Streams event would have a completely different structure (`Records[].dynamodb`) incompatible with the S3 event schema the function expects.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 12 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team deploys a Lambda function using AWS SAM. The function code with all dependencies exceeds 250 MB when unzipped, surpassing the Lambda zip deployment package limit. The team wants to keep using SAM for deployment. What should the developer do to handle the large deployment package?</div>
+<ul class="q-options"><li>Split the function into multiple smaller Lambda functions, each under 50 MB</li>
+<li class="correct">✓ Package the function as a container image and update the SAM template to use the Image package type</li>
+<li>Upload the code directly to Lambda using the AWS Console instead of SAM</li>
+<li>Compress the code with a higher compression ratio to stay under the 50 MB limit</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): Lambda supports two packaging types: Zip (limited to 50 MB zipped / 250 MB unzipped) and container image (up to 10 GB). When a deployment package exceeds the Zip size limits, switching to a container image is the recommended approach. SAM supports container image deployments via the PackageType: Image property and Metadata for the Docker build.
+- Why A is wrong: Arbitrarily splitting a function into smaller functions changes the application architecture and may not be feasible if the code has interdependencies. This doesn't address the root packaging constraint.
+- Why C is wrong: Uploading via the Console bypasses the SAM-based CI/CD pipeline the team is already using, losing infrastructure-as-code benefits and repeatability.
+- Why D is wrong: The unzipped limit is 250 MB and the zipped limit is 50 MB. Higher compression may reduce the zipped size but does not change the unzipped size, which is already over the 250 MB limit.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 13 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is packaging an AWS Lambda function that depends on several third-party libraries not included in the standard runtime. The libraries are also used by other Lambda functions in the same account. What is the BEST way to manage these dependencies for deployment?</div>
+<ul class="q-options"><li class="correct">✓ Include all dependencies in the Lambda deployment package or use Lambda layers for shared libraries</li>
+<li>Install dependencies on the Lambda instance at runtime using a bootstrap script</li>
+<li>Store dependencies in an S3 bucket and download them each time the function is invoked</li>
+<li>Rely on the Lambda runtime to provide all third-party libraries automatically</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Lambda deployment packages must include all required dependencies. For shared libraries used across multiple functions, Lambda layers allow packaging them once and attaching to multiple functions, reducing duplication and package size.
+- Why B is wrong: Lambda does not support installing packages at runtime via bootstrap scripts. The execution environment is read-only (except /tmp), and there is no package manager available during cold start.
+- Why C is wrong: Downloading dependencies from S3 on every invocation adds significant latency and increases costs. Dependencies should be bundled at deployment time, not fetched at runtime.
+- Why D is wrong: Lambda runtimes only include standard libraries (e.g., AWS SDK for Python/Node.js). Third-party libraries must be explicitly packaged by the developer.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 14 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer's AWS Lambda function is intermittently returning timeout errors when calling an Amazon DynamoDB table. CloudWatch metrics show the function's duration occasionally spikes above the configured timeout. The provisioned capacity on the table is not being exceeded. What should the developer check FIRST to identify the root cause?</div>
+<ul class="q-options"><li>Increase the Lambda function memory to the maximum 10,240 MB</li>
+<li>Switch the DynamoDB table from provisioned to on-demand capacity mode</li>
+<li class="correct">✓ Enable AWS X-Ray tracing on the Lambda function to identify which downstream call is causing latency spikes</li>
+<li>Increase the DynamoDB table's read capacity units to the maximum allowed</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS X-Ray tracing instruments the Lambda function and its downstream calls (DynamoDB, other services), producing a service map and trace timeline that pinpoints exactly which segment is causing the latency spike. This is the correct first step in root cause analysis because you need to identify the bottleneck before applying a fix.
+- Why A is wrong: Increasing Lambda memory also increases proportional CPU, which can help CPU-bound functions, but the question states duration 'occasionally' spikes — this suggests an external dependency issue, not a consistent compute bottleneck. Blindly increasing memory without diagnosing the root cause is not the right first step.
+- Why B is wrong: The question states provisioned capacity is not being exceeded, so switching to on-demand would not resolve the issue. On-demand mode helps with unpredictable traffic patterns causing throttling, which is ruled out here.
+- Why D is wrong: Since provisioned capacity is not being exceeded (no throttling), increasing RCUs would have no effect. The spikes are likely caused by something other than DynamoDB throttling, such as cold starts, network latency, or connection initialization.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 15 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team is building a distributed microservices application on AWS. The team lead asks a developer to explain the difference between monitoring and observability. Which statement BEST describes why observability goes beyond traditional monitoring?</div>
+<ul class="q-options"><li>Observability uses more dashboards than monitoring to display the same metrics</li>
+<li>Observability uses CloudWatch metrics while monitoring uses third-party tools</li>
+<li class="correct">✓ Observability combines logs, metrics, and traces to enable investigating unknown failure modes, not just checking predefined thresholds</li>
+<li>Observability replaces monitoring entirely and eliminates the need for CloudWatch alarms</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Observability combines logs, metrics, and traces to let teams investigate unknown failure modes by querying system outputs—without needing to predict every failure in advance. Monitoring checks known conditions (e.g., CPU &gt; 80%), but observability enables exploring novel, unanticipated issues through correlated telemetry data.
+- Why A is wrong: Monitoring does use dashboards, but observability is not just 'more dashboards.' Observability is about the ability to ask arbitrary questions of your system data, not simply having more visual displays.
+- Why B is wrong: Both monitoring and observability use CloudWatch metrics. The distinction is not about the tool used but about the depth of insight—observability adds traces and structured logs for root-cause analysis of unknown issues.
+- Why D is wrong: Observability does not replace monitoring. Monitoring (alerting on known thresholds) remains essential. Observability extends monitoring by enabling investigation of problems that were not anticipated when alerts were configured.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 16 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company's API Gateway-backed Lambda function serves real-time pricing data. During traffic spikes, users report intermittent latency increases of 3-5 seconds on initial requests. The function connects to an RDS database and loads a machine learning model during initialization. The team needs to ensure consistent sub-second response times. What should the developer do?</div>
+<ul class="q-options"><li>Configure reserved concurrency to guarantee pre-warmed instances</li>
+<li class="correct">✓ Configure provisioned concurrency to keep execution environments initialized</li>
+<li>Increase the function memory allocation to 10 GB</li>
+<li>Reduce the deployment package size to under 5 MB</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Provisioned concurrency keeps a specified number of Lambda execution environments initialized and ready to respond immediately, eliminating cold starts. This is the correct approach when an API has strict latency SLAs that cold starts would violate.
+- Why A is wrong: Reserved concurrency sets a maximum limit on concurrent executions to prevent a function from consuming too much capacity, but it does NOT pre-initialize environments. Invocations still experience cold starts.
+- Why C is wrong: Increasing memory allocation gives the function more CPU and can speed up execution time, but it does not eliminate the initialization delay (cold start) that occurs when new execution environments are created.
+- Why D is wrong: Reducing the deployment package size can slightly reduce cold start duration (less code to load), but it does not eliminate cold starts. Provisioned concurrency is the direct solution for latency-sensitive workloads.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 17 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer's Lambda function is intermittently returning timeout errors when processing messages from an SQS queue. CloudWatch metrics show the function's average duration has increased from 3 seconds to 25 seconds over the past week. The function reads from a DynamoDB table during processing. What should the developer check FIRST to identify the root cause?</div>
+<ul class="q-options"><li>Increase the Lambda function timeout to 60 seconds</li>
+<li class="correct">✓ Review CloudWatch Logs for DynamoDB read latency and throttling events</li>
+<li>Enable X-Ray tracing on the SQS queue</li>
+<li>Increase the SQS visibility timeout to 5 minutes</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CloudWatch Logs contain the actual execution details, including any DynamoDB throttling, slow queries, or SDK retry behavior that would explain the gradual duration increase. Since DynamoDB is the external dependency and the duration has increased gradually, examining logs for DynamoDB read latency or throttling events is the most direct root cause investigation step.
+- Why A is wrong: Increasing the Lambda timeout would mask the symptom (slow execution) without identifying why duration increased. This treats the symptom, not the cause.
+- Why C is wrong: While X-Ray traces are useful for latency analysis, the question asks what to check FIRST. CloudWatch Logs are always available by default and provide immediate insight into errors and retries without needing to enable additional instrumentation.
+- Why D is wrong: Increasing SQS visibility timeout prevents duplicate processing but does not help identify why the Lambda function is running slower. It addresses a side effect, not the root cause.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 18 — Sample Question</div>
+<div class="q-domain">Development with AWS Services</div>
+<div class="q-text">A development team maintains a Lambda function that serves an API. The function must be independently testable in dev, staging, and prod environments, and each environment must remain on a stable, immutable code snapshot while new versions are developed. What is the MOST operationally efficient way to manage this?</div>
+<ul class="q-options"><li class="correct">✓ Create aliases (dev, staging, prod) pointing to specific Lambda versions</li>
+<li>Use environment variables in $LATEST to switch behavior per environment</li>
+<li>Deploy the same Lambda version to all environments and use API Gateway to differentiate</li>
+<li>Publish a new Lambda function for each environment with a naming convention</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Lambda aliases (e.g., dev, staging, prod) each point to a specific published version. This gives every environment an immutable code snapshot, allows independent promotion (move the alias pointer), and integrates natively with API Gateway stage variables and weighted traffic shifting — all without duplicating function definitions.
+- Why B is wrong: Environment variables on $LATEST change behavior but $LATEST is mutable — any code update immediately affects all environments, violating the immutability requirement.
+- Why C is wrong: Deploying the same version everywhere means all environments run identical code. API Gateway can route differently, but the Lambda code itself cannot be versioned per environment.
+- Why D is wrong: Separate functions per environment duplicates IAM roles, triggers, and configuration, creating operational overhead. Aliases achieve the same isolation within a single function.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 19 — Sample Question</div>
+<div class="q-domain">Domain 4: Troubleshooting and Optimization</div>
+<div class="q-text">A development team runs a web application on an Auto Scaling group behind an Application Load Balancer. Traffic increases gradually during business hours and drops at night. The team wants to maintain response latency below 100 ms while minimizing costs. Which Auto Scaling policy type should the developer configure?</div>
+<ul class="q-options"><li>Simple scaling policy triggered by a CloudWatch alarm on CPU &gt; 70%</li>
+<li class="correct">✓ Target tracking scaling policy that maintains average CPU utilization at 50%</li>
+<li>Scheduled scaling that adds instances at 8 AM and removes them at 6 PM</li>
+<li>Step scaling policy with multiple thresholds at 40%, 60%, and 80% CPU</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Target tracking scaling is the simplest and most effective approach for gradual, predictable traffic patterns. It automatically adjusts capacity to maintain the target metric (e.g., 50% CPU), scaling out as traffic rises and scaling in as it drops — without needing to define individual alarms or thresholds. This matches the gradual traffic pattern and keeps latency low.
+- Why A is wrong: Simple scaling reacts to a single alarm threshold and has a cooldown period during which no further scaling occurs. This can cause latency spikes because scaling lags behind gradual load increases.
+- Why C is wrong: Scheduled scaling uses fixed times, which doesn't account for actual demand variations. If traffic patterns shift (e.g., a holiday), the schedule won't adapt, leading to either over-provisioning (higher cost) or under-provisioning (latency spikes).
+- Why D is wrong: Step scaling is useful for unpredictable, spiky traffic patterns where you need different scaling responses at different thresholds. For gradual, predictable increases, target tracking is simpler and more cost-efficient because AWS manages the scaling math automatically.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 20 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is designing a DynamoDB table to store customer orders. The application must efficiently retrieve all orders for a specific customer sorted by date, and the table will handle thousands of writes per second across many customers. Which TWO design decisions should the developer make?</div>
+<ul class="q-options"><li>Use a sequential numeric ID as the partition key to keep items ordered</li>
+<li class="correct">✓ Use a composite primary key with CustomerId as partition key and OrderDate as sort key</li>
+<li>Scan the table with a filter expression on CustomerId</li>
+<li class="correct">✓ Use a high-cardinality attribute as the partition key to ensure even data distribution</li>
+<li>Use OrderStatus as the sole partition key for simple lookups</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: A composite primary key (partition key + sort key) allows multiple items to share the same partition key while being differentiated by the sort key. This enables efficient queries that retrieve all related items (e.g., all orders for a customer) using a single Query operation on the partition key. A high-cardinality partition key (such as CustomerId) distributes data evenly across partitions, preventing hot partitions and throttling.
+- Why A is wrong: Using a sequential numeric ID (e.g., auto-incrementing) as the partition key creates hot partitions because DynamoDB assigns partitions based on key hash values. Sequential IDs cause writes to concentrate on a single partition, leading to throttling under high throughput.
+- Why B is wrong: A composite key with CustomerId as partition key and OrderDate as sort key is correct — it allows querying all orders for a customer sorted by date using a single Query operation.
+- Why C is wrong: A single attribute primary key (partition key only) with a low-cardinality attribute like OrderStatus would create hot partitions because most items would cluster under a few values (e.g., &quot;Pending&quot;, &quot;Shipped&quot;). This is a poor key design.
+- Why D is wrong: High-cardinality partition keys are correct — they ensure even data distribution across DynamoDB partitions, which is a fundamental best practice for key design.
+- Why E is wrong: Scan with a filter expression reads the entire table and then discards non-matching items. This is expensive in terms of read capacity and latency compared to a Query on a well-designed composite key.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 21 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer's application uses an Amazon SQS standard queue. Consumers occasionally process the same message twice because it becomes visible again before the first consumer finishes. What should the developer do to prevent this?</div>
+<ul class="q-options"><li>Increase the SQS message retention period to 14 days</li>
+<li class="correct">✓ Increase the visibility timeout to longer than the average processing time</li>
+<li>Enable SQS long polling with a 20-second wait time</li>
+<li>Switch the queue from standard to FIFO</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): When the visibility timeout is shorter than the time it takes a consumer to process a message, the message becomes visible again and is delivered to another consumer before the first one finishes. Increasing the visibility timeout beyond the average processing time prevents duplicate processing.
+- Why A is wrong: Message retention period controls how long unprocessed messages stay in the queue (default 4 days, max 14 days). It does not affect whether messages are redelivered to other consumers during processing.
+- Why C is wrong: Long polling reduces empty responses and API costs by waiting up to 20 seconds for messages to arrive before returning. It does not affect message visibility or duplicate delivery.
+- Why D is wrong: FIFO queues guarantee ordering and exactly-once processing, but switching queue types does not address the root cause—if the visibility timeout is too short, messages will still be retried. Additionally, FIFO queues have a throughput limit of 300 messages/second (3,000 with batching) which may not suit all workloads.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 22 — Sample Question</div>
+<div class="q-domain">Domain 3: Deployment</div>
+<div class="q-text">A development team is building a CI/CD pipeline using AWS CodePipeline. The pipeline must pull source code from a CodeCommit repository, build the application using CodeBuild, require a manager's approval before production deployment, and then deploy using CodeDeploy. How should the developer configure the pipeline stages?</div>
+<ul class="q-options"><li class="correct">✓ Source stage (CodeCommit) → Build stage (CodeBuild) → Manual Approval stage → Deploy stage (CodeDeploy)</li>
+<li>Source stage (CodeCommit) → Deploy stage (CodeDeploy) → Build stage (CodeBuild) → Manual Approval stage</li>
+<li>Build stage (CodeBuild) → Source stage (CodeCommit) → Deploy stage (CodeDeploy) → Manual Approval stage</li>
+<li>Source stage (CodeCommit) → Build stage (CodeBuild) → Deploy stage (CodeDeploy) with an inline approval checkbox</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CodePipeline stages execute sequentially. The correct order is: Source (pulls code from CodeCommit), Build (compiles/tests with CodeBuild), Manual Approval (pauses pipeline for human review), then Deploy (deploys with CodeDeploy). Manual Approval is a dedicated action type configured in its own stage or within a stage before the deploy action.
+- Why B is wrong: Deploying before building would deploy uncompiled/untested code, and approval after deployment defeats its purpose.
+- Why C is wrong: The Build stage cannot run before the Source stage provides the source artifact.
+- Why D is wrong: CodePipeline does not have an 'inline approval checkbox' on deploy actions. Manual Approval is a separate action type that must be explicitly configured.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 23 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer's Lambda function needs to read objects from an S3 bucket in the same account. The function's execution role has an identity-based policy allowing s3:GetObject on the bucket. However, the bucket policy explicitly denies s3:GetObject for all principals. What happens when the Lambda function attempts to read an object?</div>
+<ul class="q-options"><li>The request succeeds because the identity-based policy grants access</li>
+<li class="correct">✓ The request is denied because an explicit deny in any policy always overrides an allow</li>
+<li>The request succeeds because same-account access does not evaluate bucket policies</li>
+<li>The request fails with a 404 Not Found error instead of an access denied error</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: In AWS IAM policy evaluation logic, an explicit deny in any applicable policy (identity-based, resource-based, SCPs, permission boundaries) always takes precedence over any allow. Since the bucket policy explicitly denies s3:GetObject, the request is denied regardless of the identity-based allow on the execution role.
+- Why A is wrong: An identity-based allow cannot override an explicit deny in a resource-based policy. The deny always wins in AWS policy evaluation.
+- Why C is wrong: For same-account access to S3, AWS evaluates both the identity-based policy and the bucket policy. If either contains an explicit deny, the request is denied. Resource-based policies are always evaluated for S3, even within the same account.
+- Why D is wrong: S3 returns a 403 Access Denied error (not 404) when access is denied due to policy evaluation. S3 may return 404 only if the requester lacks s3:ListBucket permission and the object does not exist.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 24 — Sample Question</div>
+<div class="q-domain">Domain 2: Security</div>
+<div class="q-text">A developer is deploying a single-page application on Amazon S3 and serving it globally through Amazon CloudFront. Users should NOT be able to access the S3 bucket URL directly. Which approach should the developer use to restrict access to the S3 origin?</div>
+<ul class="q-options"><li class="correct">✓ Configure an Origin Access Control (OAC) in CloudFront and update the S3 bucket policy to allow only the CloudFront distribution</li>
+<li>Make the S3 bucket public and use CloudFront signed URLs for every request</li>
+<li>Create an S3 VPC endpoint to restrict access to CloudFront only</li>
+<li>Enable S3 Transfer Acceleration and disable direct bucket access in the S3 console</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Origin Access Control (OAC) is the AWS-recommended method to restrict S3 origin access so users can only reach content through CloudFront. OAC authenticates requests from CloudFront to S3 using SigV4, and the S3 bucket policy is updated to allow access only from the specific CloudFront distribution, blocking direct S3 URL access. OAC supersedes the legacy Origin Access Identity (OAI) and supports SSE-KMS, all S3 features, and all AWS Regions.
+- Why B is wrong: Making the S3 bucket public defeats the purpose of restricting direct access. Signed URLs control who can access content through CloudFront but do nothing to prevent direct S3 bucket URL access if the bucket is public.
+- Why C is wrong: VPC endpoints connect resources within a VPC to AWS services over the AWS private network. CloudFront is a global edge service that operates outside of VPCs, so a VPC endpoint cannot restrict S3 access to CloudFront.
+- Why D is wrong: S3 Transfer Acceleration speeds up uploads to S3 by routing data through CloudFront edge locations. It does not restrict read access to the bucket or integrate with CloudFront distributions for content delivery access control.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 25 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer manages AWS CloudFormation templates that are deployed across development, staging, and production environments. Each environment uses different database connection strings and API endpoint URLs. The developer wants to maintain a single CloudFormation template that automatically retrieves the correct environment-specific values at deploy time without manual input. Which approach should the developer use?</div>
+<ul class="q-options"><li>Create a separate CloudFormation template for each environment with hardcoded values</li>
+<li>Use CloudFormation Mappings with a FindInMap function keyed by environment name</li>
+<li class="correct">✓ Use CloudFormation dynamic references to resolve values from AWS Systems Manager Parameter Store at deploy time</li>
+<li>Export values from one stack and import them in another using CloudFormation cross-stack references</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CloudFormation dynamic references (using the {{resolve:ssm:parameter-name:version}} syntax) allow templates to retrieve values from Systems Manager Parameter Store at stack creation or update time. The developer stores environment-specific values (database strings, API URLs) in Parameter Store with a naming convention like /app/prod/db-connection and /app/dev/db-connection, then references them dynamically in the template. This keeps the template environment-agnostic, centralizes configuration in Parameter Store, and supports SecureString for sensitive values using {{resolve:ssm-secure:...}}.
+- Why A is wrong: Maintaining separate templates per environment creates template drift risk and multiplies maintenance effort. Any structural change must be replicated across all template copies. A single parameterized template with dynamic references is the standard best practice.
+- Why B is wrong: CloudFormation Mappings with FindInMap works for a small, fixed set of values known at template authoring time (like AMI IDs per region). However, Mappings are static — values are hardcoded in the template and require a template update to change. Parameter Store dynamic references allow values to be changed independently of the template, making operational updates (like rotating a database connection string) possible without redeploying the stack.
+- Why D is wrong: Cross-stack references (Export/Import) share outputs between CloudFormation stacks in the same account and region. They are designed for sharing resource identifiers (like VPC IDs or subnet IDs) between infrastructure stacks, not for managing environment-specific application configuration. Cross-stack references also create tight coupling — an exported value cannot be modified while any stack imports it.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 26 — Sample Question</div>
+<div class="q-domain">Domain 1: Development with AWS Services</div>
+<div class="q-text">A developer is building a real-time clickstream analytics application using Amazon Kinesis Data Streams. Events must be processed in the order they occurred for each user session. Which approach should the developer use when putting records into the stream?</div>
+<ul class="q-options"><li>Use a random UUID as the partition key for each record to maximize throughput distribution</li>
+<li class="correct">✓ Use the session ID as the partition key to ensure per-session ordering within a shard</li>
+<li>Use a single fixed partition key for all records to guarantee global ordering across the stream</li>
+<li>Omit the partition key and let Kinesis automatically assign records to the least-loaded shard</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Kinesis uses the MD5 hash of the partition key to determine shard placement. Records with the same partition key are routed to the same shard, and Kinesis guarantees ordering within a shard. Using the session ID as the partition key ensures all events for a given session are processed in order.
+- Why A is wrong: Random UUIDs distribute records evenly across shards (good for throughput), but events from the same session would land on different shards, breaking per-session ordering.
+- Why C is wrong: A single fixed partition key sends all records to one shard, creating a hot shard bottleneck and limiting write throughput to 1 MB/sec or 1,000 records/sec regardless of the number of shards.
+- Why D is wrong: The partition key is a required parameter when calling PutRecord or PutRecords. Kinesis does not support automatic shard assignment without a partition key.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 27 — Sample Question</div>
+<div class="q-domain">Domain 4: Troubleshooting and Optimization</div>
+<div class="q-text">A company runs a customer-facing API backed by AWS Lambda functions. Users report intermittent latency spikes of 2-3 seconds on requests that follow periods of inactivity. The development team confirms these spikes correlate with Lambda cold starts. Which TWO actions should the developer take to minimize cold start impact? (Select TWO.)</div>
+<ul class="q-options"><li>Set the Lambda function's memory to 64 MB to reduce cold start duration</li>
+<li class="correct">✓ Enable provisioned concurrency on the production alias to keep execution environments warm</li>
+<li>Increase the function timeout to 15 minutes so the function has more time to initialize</li>
+<li class="correct">✓ Move frequently used initialization code outside the handler function so it runs during the INIT phase</li>
+<li>Switch the Lambda function runtime from Python to Java to eliminate cold starts</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Provisioned concurrency (B) pre-initializes a specified number of execution environments so they are ready to respond immediately, eliminating cold starts for those environments. Moving initialization code outside the handler (D) ensures expensive operations like database connections and SDK client creation happen during the INIT phase and are reused across invocations, reducing both cold and warm start latency.
+- Why A is wrong: Lambda minimum memory is 128 MB, not 64 MB. Reducing memory actually increases cold start duration because Lambda allocates CPU proportional to memory — less memory means less CPU and slower initialization.
+- Why C is wrong: Increasing the timeout does not reduce cold start latency. Timeout controls the maximum execution duration, not initialization speed. The function still takes the same time to cold start regardless of timeout setting.
+- Why E is wrong: Switching to Java would likely increase cold start times. Java (JVM-based) runtimes generally have longer cold starts than interpreted runtimes like Python due to JVM startup overhead.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 28 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer is configuring a custom domain name (api.example.com) for an edge-optimized Amazon API Gateway REST API. The API is deployed in eu-west-1. In which AWS Region must the developer create the ACM certificate for the custom domain?</div>
+<ul class="q-options"><li class="correct">✓ us-east-1, because edge-optimized APIs use CloudFront, which requires certificates in us-east-1</li>
+<li>eu-west-1, because the certificate must be in the same Region as the API</li>
+<li>Any Region, because ACM certificates are global resources</li>
+<li>The certificate must be imported from a third-party CA into IAM certificate store</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Edge-optimized API Gateway APIs are fronted by a CloudFront distribution managed by API Gateway. CloudFront requires that SSL/TLS certificates be provisioned in us-east-1 (N. Virginia), regardless of the Region where the API is deployed. Therefore, the ACM certificate must be created in us-east-1.
+- Why B is wrong: Placing the certificate in eu-west-1 would work for a Regional custom domain name, but not for an edge-optimized one. Edge-optimized endpoints use CloudFront, which only reads certificates from us-east-1.
+- Why C is wrong: ACM certificates are Regional resources, not global. A certificate created in ap-southeast-1 is not visible to CloudFront, which only uses us-east-1.
+- Why D is wrong: While you can import third-party certificates into ACM, there is no requirement to do so. ACM issues free public certificates. The key constraint is the Region (us-east-1), not the certificate source.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 29 — Sample Question</div>
+<div class="q-domain">3</div>
+<div class="q-text">A company requires that all production deployments are reviewed by a release manager before proceeding. A developer is designing the CI/CD pipeline in AWS CodePipeline. How should the developer implement this requirement?</div>
+<ul class="q-options"><li>Configure a CloudWatch alarm to pause the pipeline when a deployment starts</li>
+<li class="correct">✓ Add a manual approval action in a stage between the staging and production deploy stages</li>
+<li>Use an AWS Lambda function that polls the release manager's email for approval before continuing</li>
+<li>Set the production deploy stage to run only during business hours using Amazon EventBridge Scheduler</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CodePipeline natively supports a manual approval action type that pauses the pipeline and optionally sends an SNS notification. The release manager can approve or reject the deployment directly in the CodePipeline console or via the API. This is the standard, built-in mechanism for gating deployments.
+- Why A is wrong: CloudWatch alarms monitor metrics and trigger automated actions—they cannot pause a pipeline and wait for a human decision.
+- Why C is wrong: Using a Lambda function to poll an email inbox is an overly complex, fragile, and non-standard approach. CodePipeline already provides a manual approval action for this exact use case.
+- Why D is wrong: EventBridge can trigger pipelines on a schedule, but restricting deployments to business hours does not replace a human review gate; the release manager must still explicitly approve each deployment.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 30 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A developer has a Lambda function that processes records from a Kinesis Data Stream. Some records intermittently fail due to malformed data, causing the entire batch to be retried and blocking the shard. The developer needs to ensure failed records are captured for later analysis without blocking processing of subsequent records. What should the developer configure?</div>
+<ul class="q-options"><li>Configure a dead-letter queue directly on the Lambda function</li>
+<li>Enable enhanced fan-out on the Kinesis stream to isolate failures</li>
+<li class="correct">✓ Configure an on-failure destination on the event source mapping to send failed records to an SQS queue</li>
+<li>Set the parallelization factor to 1 so records are processed one at a time</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: For stream-based event sources (Kinesis, DynamoDB Streams), failure handling is configured on the event source mapping, not the Lambda function itself. Configuring an on-failure destination (such as an SQS queue or SNS topic) on the event source mapping captures the metadata of failed record batches after retries are exhausted, allowing the iterator to advance past the problematic records.
+- Why A is wrong: A DLQ configured directly on the Lambda function only works for asynchronous invocations (e.g., SNS, S3 events). Kinesis triggers use synchronous (poll-based) invocation, so the DLQ must be configured on the event source mapping, not the function.
+- Why B is wrong: Enhanced fan-out provides dedicated read throughput per consumer using HTTP/2 push, but it does not handle or isolate processing failures within a consumer.
+- Why D is wrong: Setting the parallelization factor to 1 means one Lambda instance processes the entire shard sequentially, but it does not capture failed records or prevent shard blocking. The BisectBatchOnFunctionError setting could help narrow down failures, but the question asks about capturing failed records.</p></div>
+</details>
 </div>
 
-<div class="section">
-<h2>Career Impact</h2>
-<p>AWS certified professionals earn significantly higher salaries. This certification demonstrates your commitment to excellence and validates your skills to employers worldwide.</p>
-</div>
-
-<div class="section">
-<h2>Ready to Get Certified?</h2>
-<p>Join thousands who passed their AWS Developer Associate exam with <a href="https://nestedcerts.com">NestedCerts</a>. Start with free practice questions and see why our platform has a 92% pass rate.</p>
-<a href="https://nestedcerts.com/certifications" class="cta">View All Certifications →</a>
+<div class="section" style="text-align:center;">
+<h2>Ready for the Full Question Bank?</h2>
+<p>You've seen 30 questions — there are 700+ more waiting for you on <a href="https://nestedcerts.com">NestedCerts</a>, plus full-length practice exams, performance analytics, and a structured 30-day study plan.</p>
+<a href="https://nestedcerts.com/pricing" class="cta">View Pricing →</a>
+<a href="https://nestedcerts.com/articles/developer-associate" class="cta cta-secondary">Read DVA-C02 Guide →</a>
 </div>
 
 <div class="footer">
-<p>© 2026 <a href="https://nestedcerts.com">NestedCerts</a> | <a href="https://nestedcerts.com/pricing">Pricing</a> | <a href="https://nestedcerts.com/help">Help</a> | <a href="https://nestedcerts.com/certifications">All Certs</a></p>
+<p>© 2026 <a href="https://nestedcerts.com">NestedCerts</a> | <a href="https://nestedcerts.com/pricing">Pricing</a> | <a href="https://nestedcerts.com/help">Help</a> | <a href="https://nestedcerts.com/certifications">All Certs</a> | <a href="https://nestedcerts.com/faq">FAQ</a></p>
 </div>
+
 </div>
 </body>
 </html>
